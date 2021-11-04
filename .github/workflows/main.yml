@@ -3,7 +3,7 @@ name: Ruby
 on:
   push:
     branches:
-      - master
+      - main
 
   pull_request:
 
@@ -23,5 +23,18 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
+    - name: Install dependencies
+      run: bundle install
+    - name: Setup Code Climate test-reporter
+      run: |
+        curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        chmod +x ./cc-test-reporter
+        ./cc-test-reporter before-build
     - name: Run the default task
+      env:
+        CC_TEST_REPORTER_ID: 4960f5e1d28bd9109653ab30da9f745fe37d3b3143b209dad419671b2835c1aa
       run: bundle exec rake
+    - name: Publish code coverage
+      run: |
+        export GIT_BRANCH="main"
+        ./cc-test-reporter after-build -r 4960f5e1d28bd9109653ab30da9f745fe37d3b3143b209dad419671b2835c1aa

@@ -1,0 +1,9 @@
+version: "2"
+plugins:
+  rubocop:
+    enabled: true
+    channel: rubocop-0-67
+    config:
+      file: .rubocop.yml
+    exclude-patterns:
+      - spec/**/*.rb
