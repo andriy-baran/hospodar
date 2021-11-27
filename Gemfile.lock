@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hospodar (1.0.0)
+    hospodar (1.0.1)
       dry-inflector (~> 0.1)
 
 GEM
