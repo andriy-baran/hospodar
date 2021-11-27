@@ -68,9 +68,9 @@ RSpec.describe Hospodar do
     end
   end
 
-  it { expect(target).to respond_to(:mother_ship_inputs) }
-  it { expect(target).to respond_to(:mother_ship_outputs) }
-  it { expect(target).to respond_to(:mother_ship_stages) }
+  it { expect(target).to respond_to(:hospodar_inputs) }
+  it { expect(target).to respond_to(:hospodar_outputs) }
+  it { expect(target).to respond_to(:hospodar_stages) }
   it { expect(target).to respond_to(:one_stage_class) }
   it { expect(target).to respond_to(:two_stage_class) }
   it { expect(target).to respond_to(:three_stage_class) }

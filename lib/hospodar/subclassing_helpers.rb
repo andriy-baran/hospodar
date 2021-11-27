@@ -3,7 +3,7 @@
 module Hospodar
   # Component-level logic for patching base classes
   module SubclassingHelpers
-    def mother_ship_define_init(klass, &init)
+    def hospodar_define_init(klass, &init)
       if init
         klass.define_singleton_method(:__ms_init__, &init)
       elsif klass.superclass.respond_to?(:__ms_init__)
@@ -15,13 +15,13 @@ module Hospodar
       end
     end
 
-    def mother_ship_patch_class(base_class, &block)
+    def hospodar_patch_class(base_class, &block)
       return base_class unless block
 
       Class.new(base_class, &block)
     end
 
-    def mother_ship_check_inheritance!(component_class, base_class)
+    def hospodar_check_inheritance!(component_class, base_class)
       return if component_class.nil? || base_class.nil?
       raise(ArgumentError, "must be a subclass of #{base_class.inspect}") unless component_class <= base_class
     end

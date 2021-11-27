@@ -24,16 +24,16 @@ RSpec.describe Hospodar do
     end
   end
 
-  it { expect(target).to respond_to(:mother_ship_inputs) }
-  it { expect(target).to respond_to(:mother_ship_outputs) }
-  it { expect(target).to respond_to(:mother_ship_parts) }
+  it { expect(target).to respond_to(:hospodar_inputs) }
+  it { expect(target).to respond_to(:hospodar_outputs) }
+  it { expect(target).to respond_to(:hospodar_parts) }
 
   it 'has inputs list' do
-    expect(target.mother_ship_inputs).to match({ one: be_a(Class), two: be_a(Class) })
+    expect(target.hospodar_inputs).to match({ one: be_a(Class), two: be_a(Class) })
   end
 
   it 'has outputs list' do
-    expect(target.mother_ship_outputs).to eq({})
+    expect(target.hospodar_outputs).to eq({})
   end
 
   it 'sets default base_class for a group' do

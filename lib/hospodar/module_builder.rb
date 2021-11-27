@@ -21,12 +21,12 @@ module Hospodar
       def extended(receiver)
         receiver.extend SubclassingHelpers
         receiver.extend InheritanceHelpers
-        receiver.private_class_method :mother_ship_define_init
-        receiver.private_class_method :mother_ship_patch_class
-        receiver.private_class_method :mother_ship_check_inheritance!
-        receiver.private_class_method :mother_ship_included_modules
-        receiver.private_class_method :mother_ship_copy_configuration_for_unit
-        receiver.private_class_method :mother_ship_activate_components_for_factory
+        receiver.private_class_method :hospodar_define_init
+        receiver.private_class_method :hospodar_patch_class
+        receiver.private_class_method :hospodar_check_inheritance!
+        receiver.private_class_method :hospodar_included_modules
+        receiver.private_class_method :hospodar_copy_configuration_for_unit
+        receiver.private_class_method :hospodar_activate_components_for_factory
       end
 
       def hash
@@ -36,7 +36,7 @@ module Hospodar
       end
 
       def components_storage_name(title = components_name)
-        :"mother_ship_#{title}"
+        :"hospodar_#{title}"
       end
 
       def simple_store_method_name(name)

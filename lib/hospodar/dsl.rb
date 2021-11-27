@@ -7,7 +7,7 @@ module Hospodar
       mod = self
       receiver.define_singleton_method(mod.store_method_name(title)) do |klass|
         base_class = public_send(:"#{mod.components_storage_name}")[title]
-        mother_ship_check_inheritance!(klass, base_class)
+        hospodar_check_inheritance!(klass, base_class)
         send(mod.simple_store_method_name(title), klass)
       end
     end
@@ -26,12 +26,12 @@ module Hospodar
       define_method(mod.activation_method_name) do |title, base_class, klass, init = nil, &block|
         raise(ArgumentError, 'please provide a block or class') if klass.nil? && block.nil?
 
-        mother_ship_check_inheritance!(klass, base_class)
+        hospodar_check_inheritance!(klass, base_class)
 
         target_class = klass || base_class
 
-        patched_class = mother_ship_patch_class(target_class, &block)
-        mother_ship_define_init(patched_class, &init)
+        patched_class = hospodar_patch_class(target_class, &block)
+        hospodar_define_init(patched_class, &init)
         public_send(mod.store_method_name(title), patched_class)
       end
     end
@@ -63,7 +63,7 @@ module Hospodar
           private :"write_#{reader_name}"
         end
         klass = base_class || mod.default_base_class || Class.new(Object)
-        mother_ship_define_init(klass, &(init || mod.default_init))
+        hospodar_define_init(klass, &(init || mod.default_init))
         mod.define_component_store_method(self, title)
         mod.define_component_simple_store_method(self, title)
         send(mod.simple_store_method_name(title), klass)

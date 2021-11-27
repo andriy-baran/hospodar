@@ -21,7 +21,7 @@ module Hospodar
         ExecutionPlanMatrix = Struct.new(:collection) do
           def with_creation_procs(factory)
             self.collection = collection.map do |group, title|
-              [group, title, factory.mother_ship_assembler_new_instance(group, title)]
+              [group, title, factory.hospodar_assembler_new_instance(group, title)]
             end
             self
           end

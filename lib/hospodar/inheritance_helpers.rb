@@ -9,17 +9,17 @@ module Hospodar
     end
 
     def copy_superclass_configuration
-      mother_ship_included_modules.each do |factory|
-        mother_ship_copy_configuration_for_unit(factory.component_name)
-        mother_ship_activate_components_for_factory(factory)
+      hospodar_included_modules.each do |factory|
+        hospodar_copy_configuration_for_unit(factory.component_name)
+        hospodar_activate_components_for_factory(factory)
       end
     end
 
-    def mother_ship_included_modules
+    def hospodar_included_modules
       Hospodar.registered_modules & included_modules
     end
 
-    def mother_ship_copy_configuration_for_unit(component_name)
+    def hospodar_copy_configuration_for_unit(component_name)
       readers_regexp = Regexp.new("\\w+_#{component_name}_class\\z")
       superclass.public_methods.grep(readers_regexp).each do |reader_method|
         klass = superclass.public_send(reader_method)
@@ -27,7 +27,7 @@ module Hospodar
       end
     end
 
-    def mother_ship_activate_components_for_factory(factory)
+    def hospodar_activate_components_for_factory(factory)
       superclass.public_send(factory.components_storage_name.to_s).each do |component, klass|
         public_send(factory.store_method_name(component), klass)
       end

@@ -4,7 +4,7 @@ module Hospodar
   module Builder
     # Helps determine object creation procedure for given attributes
     module Helpers
-      def mother_ship_assembler_new_instance(group, step, *_attrs)
+      def hospodar_assembler_new_instance(group, step, *_attrs)
         return public_send(:"build_#{step}") if %i[flat wrap nest].include?(group)
 
         mod = included_modules.detect { |m| m.respond_to?(:component_name) && m.component_name == group }
